@@ -10,7 +10,5 @@ data
 sfm/sfm/supervisor.d/*.conf
 _build
 .idea
-docker/dev.docker-compose.yml
-docker/master.docker-compose.yml
-docker/prod.docker-compose.yml
-docker/docker-compose.yml
+docker/dev/env.list
+docker/dev/container.sh
