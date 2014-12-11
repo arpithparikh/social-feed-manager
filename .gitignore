@@ -10,3 +10,5 @@ data
 sfm/sfm/supervisor.d/*.conf
 _build
 .idea
+docker/dev/env.list
+docker/dev/container.sh
