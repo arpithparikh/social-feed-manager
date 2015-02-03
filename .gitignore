@@ -1,8 +1,8 @@
 *.pyc
 *.log
 ENV
-local_settings.py
-wsgi.py
+sfm/sfm/local_settings.py
+sfm/sfm/wsgi.py
 *.swp
 *.swo
 data
