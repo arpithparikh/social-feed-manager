@@ -10,8 +10,7 @@ RUN apt-get update && apt-get install -y \
     git \
     python-pip \
     apache2 \
-    libapache2-mod-wsgi \
-    wget
+    libapache2-mod-wsgi
 #Upgrade pip
 RUN pip install -U pip
 #This pre-fetches the most recent requirements.txt.
@@ -34,8 +33,5 @@ VOLUME /var/sfm
 RUN mkdir /var/sfm/supervisor.d
 ADD invoke.sh /opt/
 RUN chmod +x /opt/invoke.sh
-#Install appdeps to allow checking for application dependencies
-WORKDIR /opt/sfm-setup
-RUN wget -L --no-check-certificate https://github.com/gwu-libraries/appdeps/raw/master/appdeps.py
 CMD ["/opt/invoke.sh"]
 EXPOSE 80

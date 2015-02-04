@@ -1,7 +1,5 @@
 sfmmasterdb:
     image: gwul/sfm_db
-    environment:
-        - POSTGRES_PASSWORD=gherD42#dl5
 sfmmasterapp:
     image: gwul/sfm_app:master
     ports:

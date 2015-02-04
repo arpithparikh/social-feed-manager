@@ -1,15 +1,13 @@
 sfmdevdb:
     image: gwul/sfm_db
-    environment:
-        - POSTGRES_PASSWORD=gherD42#dl5
 sfmdevapp:
-    image: gwul/sfm_app:dev
+    image: gwul/sfm_dev
     ports:
         - "8000:80"
     links:
         - sfmdevdb:db
     volumes:
-        - ~/social-feed-manager:/opt/social-feed-manager
+        - ~/Data/sfm/social-feed-manager:/opt/social-feed-manager
     environment:
         - SFM_DEBUG=True
         - SFM_TWITTER_DEFAULT_USERNAME=jlittman_dev
