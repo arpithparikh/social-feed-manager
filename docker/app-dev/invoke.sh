@@ -1,8 +1,9 @@
 #!/bin/bash
-
-if [ ! -d "/opt/social-feed-manager" ]; then
-  echo "-v <path on host>/social-feed-manager:/opt/social-feed-manager missing when running container"
-  exit 1
+echo "Waiting for db"
+python /opt/sfm-setup/appdeps.py --wait-secs 30 --port-wait db:5432 --file /opt/social-feed-manager
+if [ "$?" = "1" ]; then
+    echo "Problem with application dependencies."
+    exit 1
 fi
 
 echo "Updating requirements"

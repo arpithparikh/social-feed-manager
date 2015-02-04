@@ -1,13 +1,13 @@
 sfmdevdb:
     image: gwul/sfm_db
 sfmdevapp:
-    image: gwul/sfm_dev
+    image: gwul/sfm_app:dev
     ports:
         - "8000:80"
     links:
         - sfmdevdb:db
     volumes:
-        - ~/Data/sfm/social-feed-manager:/opt/social-feed-manager
+        - ~/social-feed-manager:/opt/social-feed-manager
     environment:
         - SFM_DEBUG=True
         - SFM_TWITTER_DEFAULT_USERNAME=jlittman_dev
