@@ -26,5 +26,7 @@ echo "Starting supervisord"
 echo "Running server"
 #Not entirely sure why this is necessary, but it works.
 /etc/init.d/apache2 start
+echo "Stopping server"
 /etc/init.d/apache2 stop
+echo "Starting server again"
 apachectl -DFOREGROUND
