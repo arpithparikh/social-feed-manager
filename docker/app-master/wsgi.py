@@ -15,7 +15,7 @@ framework.
 """
 # if using a virtualenv, uncomment and set the next three lines appropriately
 #import site
-ENV = '/PATH/TO/YOUR/VIRTUALENV'
+#ENV = '/PATH/TO/YOUR/VIRTUALENV'
 #site.addsitedir(ENV + '/lib/python2.7/site-packages')
 
 import os

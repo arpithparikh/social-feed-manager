@@ -13,7 +13,6 @@ echo "Migrating db"
 /opt/social-feed-manager/sfm/manage.py migrate --noinput
 
 echo "Starting supervisord"
-[ -d /var/sfm/supervisor.d ] || mkdir /var/sfm/supervisor.d && chown www-data:www-data /var/sfm/supervisor.d
 /etc/init.d/supervisor start
 
 echo "Running server"

@@ -30,8 +30,9 @@ RUN a2dissite 000-default
 #Configure supervisor
 ADD supervisord.conf /etc/supervisor/
 RUN mkdir /var/log/sfm
+RUN mkdir /var/sfm && chmod ugo+w /var/sfm
 VOLUME /var/sfm
-RUN mkdir /var/sfm/supervisor.d
+RUN mkdir /var/supervisor.d && chown www-data:www-data /var/supervisor.d
 ADD invoke.sh /opt/
 RUN chmod +x /opt/invoke.sh
 #Install appdeps to allow checking for application dependencies

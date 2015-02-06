@@ -96,4 +96,4 @@ SITE_SUPERUSER_EMAIL = os.getenv('SFM_ADMIN_EMAIL', 'nowhere@example.com')
 # A hashed version of `SITE_SUPERUSER_PASSWORD` will be store in superuser's `password` field.
 SITE_SUPERUSER_PASSWORD = os.getenv('SFM_ADMIN_PASSWORD', 'password')
 
-SUPERVISOR_ROOT = "/var/sfm/supervisor.d"
+SUPERVISOR_ROOT = "/var/supervisor.d"
