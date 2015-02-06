@@ -56,13 +56,14 @@ TWITTER_CONSUMER_SECRET = os.environ['SFM_TWITTER_CONSUMER_SECRET']
 
 BRANDING = {
     # Required:
-    'institution': '',
-    'URL': '',
+    'institution': os.getenv('SFM_BRANDING_INSTITUTION', ''),
+    'URL': os.getenv('SFM_BRANDING_URL', ''),
     # Optional:
     #   address may contain any number of elements
-    'address': ['', '', ''],
-    'email': '',
+    'address': [os.getenv('SFM_BRANDING_ADDRESS', '')],
+    'email': os.getenv('SFM_BRANDING_EMAIL', ''),
     #   logofile should be placed in static/img
+    # See https://github.com/gwu-libraries/social-feed-manager/issues/300
     'logofile': '',
 }
 
