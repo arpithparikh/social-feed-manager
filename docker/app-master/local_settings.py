@@ -59,11 +59,12 @@ BRANDING = {
     # Required:
     'institution': os.getenv('SFM_BRANDING_INSTITUTION', ''),
     'URL': os.getenv('SFM_BRANDING_URL', ''),
-    # Optional. Address may contain any number of elements.
-    # However, for configuration by env variables, only allowing one.
+    # Optional:
+    #   address may contain any number of elements
     'address': [os.getenv('SFM_BRANDING_ADDRESS', '')],
     'email': os.getenv('SFM_BRANDING_EMAIL', ''),
     #   logofile should be placed in static/img
+    # See https://github.com/gwu-libraries/social-feed-manager/issues/300
     'logofile': '',
 }
 
