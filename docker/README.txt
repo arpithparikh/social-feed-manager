@@ -33,7 +33,11 @@ Latest development configuration
 ===========================
 This configuration provides the latest code committed to the SFM master branch.  It is automatically updated when a new commit is made.
 
-1.  Copy example.latest.docker-compose.yml to docker-compose.yml.
+1.  Download docker-compose.yml:
+
+        curl -L https://github.com/gwu-libraries/social-feed-manager/raw/master/docker/example.master.docker-compose.yml > docker-compose.yml
+
+    Or if you already have the code checked out, copy example.master.docker-compose.yml to docker-compose.yml.
 
         cd social-feed-manager/docker
         cp example.latest.docker-compose.yml docker-compose.yml
@@ -54,7 +58,11 @@ Production configuration
 ==================
 This configuration provides released instances of SFM.  Additional releases will be added.
 
-1.  Copy example.prod.docker-compose.yml to docker-compose.yml.
+1.  Download docker-compose.yml:
+
+        curl -L https://github.com/gwu-libraries/social-feed-manager/raw/master/docker/example.prod.docker-compose.yml > docker-compose.yml
+
+    Or if you already have the code checked out, copy example.prod.docker-compose.yml to docker-compose.yml.
 
         cd social-feed-manager/docker
         cp example.prod.docker-compose.yml docker-compose.yml
