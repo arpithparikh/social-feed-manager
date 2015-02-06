@@ -18,6 +18,9 @@ WORKDIR /tmp
 RUN wget --no-check-certificate https://github.com/gwu-libraries/social-feed-manager/archive/m5_002.zip
 RUN unzip m5_002.zip
 RUN mv social-feed-manager-m5_002 /opt/social-feed-manager
+#Monkeypatch for hardcoding use of virtual env
+ADD utils.py /opt/social-feed-manager/sfm/ui/
+RUN chmod ugo+r /opt/social-feed-manager/sfm/ui/utils.py
 #This installs the requirements.txt.
 RUN pip install -r /opt/social-feed-manager/requirements.txt
 #xlwt is missing in m5_002
@@ -33,11 +36,9 @@ RUN a2ensite sfm
 RUN a2dissite 000-default
 #Configure supervisor
 ADD supervisord.conf /etc/supervisor/
-RUN mkdir /var/supervisor.d && chown www-data:www-data /var/supervisor.d
+#In m5_002, the supervisor.d path is not configurable
+RUN chown www-data:www-data /opt/social-feed-manager/sfm/sfm/supervisor.d
 RUN mkdir /var/log/sfm
-#Data volume
-RUN mkdir /var/sfm && chmod ugo+w /var/sfm
-VOLUME /var/sfm
 ADD invoke.sh /opt/
 RUN chmod +x /opt/invoke.sh
 #Install appdeps to allow checking for application dependencies

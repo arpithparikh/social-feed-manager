@@ -13,3 +13,5 @@ sfmapp:
         - SFM_TWITTER_DEFAULT_USERNAME=jlittman_dev
         - SFM_TWITTER_CONSUMER_KEY=EHdoTe7ksgflP5nUalEfhaeo
         - SFM_TWITTER_CONSUMER_SECRET=ZtUpemBkf2cEmaqiy52Ddihu9FPAiLebuMOmqN0jeQtXeAlen
+    volumes:
+        - /sfm-data:/var/sfm

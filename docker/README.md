@@ -58,6 +58,8 @@ Production configuration
 ==================
 This configuration provides released instances of SFM.  Additional releases will be added.
 
+In this configuration, the data directory is a host volume.
+
 1.  Download docker-compose.yml:
 
         curl -L https://github.com/gwu-libraries/social-feed-manager/raw/master/docker/example.prod.docker-compose.yml > docker-compose.yml
@@ -67,14 +69,20 @@ This configuration provides released instances of SFM.  Additional releases will
         cd social-feed-manager/docker
         cp example.prod.docker-compose.yml docker-compose.yml
 
-2.  In docker-compose.yml:
+2.  Create the directory that will be mounted as a host volume:
+       
+        mkdir /sfm-data
+        chmod ugo+w /sfm-data
+
+3.  In docker-compose.yml:
 
     * update the SFM_TWITTER_* environment variables.
+    * update the host volume (from `/sfm-data`).
     * update the [tag](https://registry.hub.docker.com/u/gwul/sfm_app/tags/manage/) of the sfmapp image to the desired release.
 
 See app/*/local_settings.py for additional configuration that can be made using environment variables.
 
-3.  Up:
+4.  Up:
 
         docker-compose up -d
 
@@ -94,4 +102,4 @@ can connect to the postgres container.
     * VirtualEnv is not used (since python is isolated by the container).
     * Everything is run as root.
     * Supervisord is running.
-* The sfm_app container shares the `/var/sfm` volume.
+* The sfm_app container shares the `/var/sfm` volume (except in the production configuration).
