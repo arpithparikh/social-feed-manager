@@ -27,7 +27,7 @@ See app-dev/local_settings.py for additional configuration that can be made usin
 
         docker-compose up -d
 
-SFM will now be available at http://localhost:8000/sfm.  (Unless you're using boot2docker -- see `boot2docker ip` to determine the ip to use instead of localhost.) 
+SFM will now be available at http://localhost:8000/sfm.  (Unless you're using boot2docker -- see `boot2docker ip` to determine the ip to use instead of localhost.)
 
 Latest development configuration
 ===========================
@@ -52,7 +52,7 @@ See app-latest/local_settings.py for additional configuration that can be made u
 
         docker-compose up -d
 
-SFM will now be available at http://localhost:8000/sfm.  (Unless you're using boot2docker -- see `boot2docker ip` to determine the ip to use instead of localhost.) 
+SFM will now be available at http://localhost:8000/sfm.  (Unless you're using boot2docker -- see `boot2docker ip` to determine the ip to use instead of localhost.)
 
 Production configuration
 ==================
@@ -78,7 +78,7 @@ See app/*/local_settings.py for additional configuration that can be made using 
 
         docker-compose up -d
 
-SFM will now be available at http://localhost/sfm.  (Unless you're using boot2docker -- see `boot2docker ip` to determine the ip to use instead of localhost.) 
+SFM will now be available at http://localhost/sfm.  (Unless you're using boot2docker -- see `boot2docker ip` to determine the ip to use instead of localhost.)
 
 Additional notes
 ============
@@ -94,3 +94,4 @@ can connect to the postgres container.
     * VirtualEnv is not used (since python is isolated by the container).
     * Everything is run as root.
     * Supervisord is running.
+* The sfm_app container shares the `/var/sfm` volume.
