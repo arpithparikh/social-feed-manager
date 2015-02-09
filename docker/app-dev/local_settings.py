@@ -87,13 +87,13 @@ INSTALLED_APPS = (
 SITE_SUPERUSER_ID = '5'
 
 # This field is stored in `User.USERNAME_FIELD`. This is usually a `username` or  an `email`.
-SITE_SUPERUSER_USERNAME = os.getenv('SFM_ADMIN_NAME', 'sfmadmin')
+SITE_SUPERUSER_USERNAME = os.getenv('SFM_SITE_ADMIN_NAME', 'sfmadmin')
 
 # This field is stored in the `email` field, provided, that `User.USERNAME_FIELD` is not an `email`.
 # If `User.USERNAME_FIELD` is already an email address, set `SITE_SUPERUSER_EMAIL = SITE_SUPERUSER_USERNAME`
-SITE_SUPERUSER_EMAIL = os.getenv('SFM_ADMIN_EMAIL', 'nowhere@example.com')
+SITE_SUPERUSER_EMAIL = os.getenv('SFM_SITE_ADMIN_EMAIL', 'nowhere@example.com')
 
 # A hashed version of `SITE_SUPERUSER_PASSWORD` will be store in superuser's `password` field.
-SITE_SUPERUSER_PASSWORD = os.getenv('SFM_ADMIN_PASSWORD', 'password')
+SITE_SUPERUSER_PASSWORD = os.getenv('SFM_SITE_ADMIN_PASSWORD', 'password')
 
 SUPERVISOR_ROOT = "/var/supervisor.d"
