@@ -88,6 +88,15 @@ See app/*/local_settings.py for additional configuration that can be made using 
 
 SFM will now be available at http://localhost/sfm.  (Unless you're using boot2docker -- see `boot2docker ip` to determine the ip to use instead of localhost.)
 
+### Production configuration with HTTPS
+A variation of the production configuration that uses HTTPS is available.  The HTTPS images are the same as the production images with _https appended (e.g., gwul/sfm_app:m5_002_https).
+
+The instructions are the same as above, except:
+* The name of the example docker-compose.yml is example.prod-https.docker-compose.yml.
+* When updating docker-compose.yml, the location of the SSL certificate and key files on the host system should be provided.
+
+All HTTP requests (port 80) will be redirected to HTTPS (port 443).
+
 Additional notes
 ============
 * The SFM admin account is "sfmadmin" and password is "password".  (This can be

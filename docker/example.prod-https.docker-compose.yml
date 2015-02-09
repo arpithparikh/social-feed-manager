@@ -3,7 +3,7 @@ sfmdb:
     environment:
         - POSTGRES_PASSWORD=gherD42#dl5
 sfmapp:
-    image: gwul/sfm_app:latest
+    image: gwul/sfm_app:latest_https
     ports:
         - "80:80"
         - "443:443"
@@ -16,3 +16,5 @@ sfmapp:
         - SFM_TWITTER_CONSUMER_SECRET=ZtUpemBkf2cEmaqiy52Ddihu9FPAiLebuMOmqN0jeQtXeAlen
     volumes:
         - /sfm-data:/var/sfm
+        - ~/social-feed-manager/docker/sfm.crt:/etc/ssl/certs/sfm.crt:ro
+        - ~/social-feed-manager/docker/sfm.key:/etc/ssl/private/sfm.key:ro
