@@ -21,6 +21,8 @@ RUN mv social-feed-manager-m5_002 /opt/social-feed-manager
 #Monkeypatch for hardcoding use of virtual env
 ADD utils.py /opt/social-feed-manager/sfm/ui/
 RUN chmod ugo+r /opt/social-feed-manager/sfm/ui/utils.py
+#This pegs tweepy version, which isn't done in requirements.txt
+RUN pip install tweepy==2.3.0
 #This installs the requirements.txt.
 RUN pip install -r /opt/social-feed-manager/requirements.txt
 #xlwt is missing in m5_002
