@@ -9,9 +9,13 @@ fi
 echo "Updating requirements"
 pip install -r /opt/social-feed-manager/requirements.txt
 
+echo "Writing local_settings"
+echo "env={}" > /opt/social-feed-manager/sfm/sfm/local_settings.py
+env | grep 'SFM_\|\DB_' | sed 's/\(.*\)=\(.*\)/env["\1"]="\2"/' >> /opt/social-feed-manager/sfm/sfm/local_settings.py
+cat /tmp/local_settings.py >> /opt/social-feed-manager/sfm/sfm/local_settings.py
+
 echo "Copying config"
-cp /opt/sfm-setup/local_settings.py /opt/social-feed-manager/sfm/sfm/
-cp /opt/sfm-setup/wsgi.py /opt/social-feed-manager/sfm/sfm/
+cp /tmp/wsgi.py /opt/social-feed-manager/sfm/sfm/
 
 echo "Syncing db"
 /opt/social-feed-manager/sfm/manage.py syncdb --noinput
@@ -21,6 +25,9 @@ echo "Migrating db"
 
 echo "Starting supervisord"
 /etc/init.d/supervisor start
+
+echo "Starting cron"
+cron
 
 echo "Running server"
 #Not entirely sure why this is necessary, but it works.

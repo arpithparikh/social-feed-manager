@@ -11,7 +11,8 @@ RUN apt-get update && apt-get install -y \
     apache2 \
     libapache2-mod-wsgi \
     wget \
-    zip
+    zip \
+    cron
 #Upgrade pip
 RUN pip install -U pip
 WORKDIR /tmp
@@ -29,7 +30,7 @@ RUN pip install tweepy==2.3.0
 RUN pip install xlwt
 #This is used to automatically create the admin user.
 RUN pip install django-finalware==0.0.2
-ADD local_settings.py /opt/social-feed-manager/sfm/sfm/
+ADD local_settings.py /tmp/
 ADD wsgi.py /opt/social-feed-manager/sfm/sfm/
 #Enable sfm site
 ADD apache.conf /etc/apache2/sites-available/sfm
@@ -46,5 +47,8 @@ RUN chmod +x /opt/invoke.sh
 #Install appdeps to allow checking for application dependencies
 WORKDIR /opt/social-feed-manager
 RUN wget -L --no-check-certificate https://github.com/gwu-libraries/appdeps/raw/master/appdeps.py
+#Cron
+ADD crons.conf /tmp/
+RUN crontab /tmp/crons.conf
 CMD ["/opt/invoke.sh"]
 EXPOSE 80

@@ -12,5 +12,5 @@ _build
 .idea
 docker/dev.docker-compose.yml
 docker/master.docker-compose.yml
-docker/prod.docker-compose.yml
+docker/prod*.docker-compose.yml
 docker/docker-compose.yml
