@@ -11,7 +11,8 @@ RUN apt-get update && apt-get install -y \
     python-pip \
     apache2 \
     libapache2-mod-wsgi \
-    wget
+    wget \
+    cron
 #Upgrade pip
 RUN pip install -U pip
 #This pre-fetches the most recent requirements.txt.
@@ -20,8 +21,8 @@ RUN pip install -r /opt/sfm-setup/requirements.txt
 #This is used to automatically create the admin user.
 RUN pip install django-finalware==0.0.2
 #These will be copied over into the app by invoke.sh.
-ADD local_settings.py /opt/sfm-setup/
-ADD wsgi.py /opt/sfm-setup/
+ADD local_settings.py /tmp/
+ADD wsgi.py /tmp/
 #Enable sfm site
 ADD apache.conf /etc/apache2/sites-available/sfm
 RUN a2ensite sfm
@@ -38,5 +39,8 @@ RUN chmod +x /opt/invoke.sh
 #Install appdeps to allow checking for application dependencies
 WORKDIR /opt/sfm-setup
 RUN wget -L --no-check-certificate https://github.com/gwu-libraries/appdeps/raw/master/appdeps.py
+#Cron
+ADD crons.conf /tmp/
+RUN crontab /tmp/crons.conf
 CMD ["/opt/invoke.sh"]
 EXPOSE 80

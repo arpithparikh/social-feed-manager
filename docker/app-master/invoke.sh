@@ -6,6 +6,11 @@ if [ "$?" = "1" ]; then
     exit 1
 fi
 
+echo "Writing local_settings"
+echo "env={}" > /opt/social-feed-manager/sfm/sfm/local_settings.py
+env | grep 'SFM_\|\DB_' | sed 's/\(.*\)=\(.*\)/env["\1"]="\2"/' >> /opt/social-feed-manager/sfm/sfm/local_settings.py
+cat /tmp/local_settings.py >> /opt/social-feed-manager/sfm/sfm/local_settings.py
+
 echo "Syncing db"
 /opt/social-feed-manager/sfm/manage.py syncdb --noinput
 
@@ -14,6 +19,9 @@ echo "Migrating db"
 
 echo "Starting supervisord"
 /etc/init.d/supervisor start
+
+echo "Starting cron"
+cron
 
 echo "Running server"
 #Not entirely sure why this is necessary, but it works.

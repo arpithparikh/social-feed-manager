@@ -1,25 +1,23 @@
-import os
-
-DEBUG = os.getenv('SFM_DEBUG', 'True') == 'True'
+DEBUG = env.get('SFM_DEBUG', 'True') == 'True'
 
 ADMINS = (
-    (os.getenv('SFM_ADMIN_NAME', 'sfmadmin'), os.getenv('SFM_ADMIN_EMAIL', 'nowhere@example.com')),
+    (env.get('SFM_ADMIN_NAME', 'sfmadmin'), env.get('SFM_ADMIN_EMAIL', 'nowhere@example.com')),
 )
 
 MANAGERS = ADMINS
 
 # This value should be something like [sfm-test] (with a trailing space)
-EMAIL_SUBJECT_PREFIX = os.getenv('SFM_EMAIL_SUBJECT_PREFIX', '') + ' '
+EMAIL_SUBJECT_PREFIX = env.get('SFM_EMAIL_SUBJECT_PREFIX', '') + ' '
 
 # Set SERVER_EMAIL to root@myserver, e.g. 'root@gwsfm-test.wrlc.org'
-SERVER_EMAIL = os.getenv('SFM_SERVER_EMAIL', '')
+SERVER_EMAIL = env.get('SFM_SERVER_EMAIL', '')
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'sfm',
         'USER': 'postgres',
-        'PASSWORD': os.getenv('DB_ENV_POSTGRES_PASSWORD'),
+        'PASSWORD': env['DB_ENV_POSTGRES_PASSWORD'],
         'HOST': 'db',
         'PORT': '5432',
     }
@@ -51,18 +49,18 @@ DATA_DIR = '/var/sfm'
 # socket file specified in /etc/supervisor/supervisord.conf
 SUPERVISOR_UNIX_SOCKET_FILE = '/var/run//supervisor.sock'
 
-TWITTER_DEFAULT_USERNAME = os.environ['SFM_TWITTER_DEFAULT_USERNAME']
-TWITTER_CONSUMER_KEY = os.environ['SFM_TWITTER_CONSUMER_KEY']
-TWITTER_CONSUMER_SECRET = os.environ['SFM_TWITTER_CONSUMER_SECRET']
+TWITTER_DEFAULT_USERNAME = env['SFM_TWITTER_DEFAULT_USERNAME']
+TWITTER_CONSUMER_KEY = env['SFM_TWITTER_CONSUMER_KEY']
+TWITTER_CONSUMER_SECRET = env['SFM_TWITTER_CONSUMER_SECRET']
 
 BRANDING = {
     # Required:
-    'institution': os.getenv('SFM_BRANDING_INSTITUTION', ''),
-    'URL': os.getenv('SFM_BRANDING_URL', ''),
+    'institution': env.get('SFM_BRANDING_INSTITUTION', ''),
+    'URL': env.get('SFM_BRANDING_URL', ''),
     # Optional:
     #   address may contain any number of elements
-    'address': [os.getenv('SFM_BRANDING_ADDRESS', '')],
-    'email': os.getenv('SFM_BRANDING_EMAIL', ''),
+    'address': [env.get('SFM_BRANDING_ADDRESS', '')],
+    'email': env.get('SFM_BRANDING_EMAIL', ''),
     #   logofile should be placed in static/img
     # See https://github.com/gwu-libraries/social-feed-manager/issues/300
     'logofile': '',
@@ -89,14 +87,14 @@ INSTALLED_APPS = (
 SITE_SUPERUSER_ID = '5'
 
 # This field is stored in `User.USERNAME_FIELD`. This is usually a `username` or  an `email`.
-SITE_SUPERUSER_USERNAME = os.getenv('SFM_SITE_ADMIN_NAME', 'sfmadmin')
+SITE_SUPERUSER_USERNAME = env.get('SFM_SITE_ADMIN_NAME', 'sfmadmin')
 
 # This field is stored in the `email` field, provided, that `User.USERNAME_FIELD` is not an `email`.
 # If `User.USERNAME_FIELD` is already an email address, set `SITE_SUPERUSER_EMAIL = SITE_SUPERUSER_USERNAME`
-SITE_SUPERUSER_EMAIL = os.getenv('SFM_SITE_ADMIN_EMAIL', 'nowhere@example.com')
+SITE_SUPERUSER_EMAIL = env.get('SFM_SITE_ADMIN_EMAIL', 'nowhere@example.com')
 
 # A hashed version of `SITE_SUPERUSER_PASSWORD` will be store in superuser's `password` field.
-SITE_SUPERUSER_PASSWORD = os.getenv('SFM_SITE_ADMIN_PASSWORD', 'password')
+SITE_SUPERUSER_PASSWORD = env.get('SFM_SITE_ADMIN_PASSWORD', 'password')
 
 #This isn't configurable in m5_002
 #SUPERVISOR_ROOT = "/var/supervisor.d"
